@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <section class="tab">
+        <div class="tab__label">
+          <div v-for="(tab, id) in tabs" :key="tab.id">
+            <a href="#" class="tab__item" @click="selectTab(tab.id)"
+            :class="{selected: selected === tab.id}">{{ tab.title }}</a>
+          </div>
+        </div>
+
+        <div class="tab__content" v-show="selected === 1">コンテンツ１</div>
+        <div class="tab__content" v-show="selected === 2">コンテンツ２</div>
+        <div class="tab__content" v-show="selected === 3">コンテンツ３</div>
+      </section>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            selected: 1,
+            tabs: [
+              {
+                id: 1,
+                title: "タブ１",
+              },
+              {
+                id: 2,
+                title: "タブ２",
+              },
+              {
+                id: 3,
+                title: "タブ３",
+              },
+            ],
+          };
+        },
+        methods: {
+          selectTab(id) {
+            this.selected = id;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
